@@ -20,6 +20,7 @@ int main()
         }
         else if(an[i]=='*')
         {
+            //wrong?
             j++;
             k=3;
         }
