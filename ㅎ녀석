@@ -1,0 +1,25 @@
+#include <stdio.h>
+void plus(int a, int b)
+{
+    printf("%d + %d = %d\n",a,b,a+b);
+}
+void minus(int a, int b)
+{
+    printf("%d - %d = %d\n",a,b,a-b);
+}
+void multiple(int a, int b)
+{
+    printf("%d * %d = %d\n",a,b,a*b);
+}
+void divide(int a, int b)
+{
+    if(a%b)
+    {
+        printf("%d / %d = %.2f\n",a,b,(float)a/b);
+    }
+    else printf("%d / %d = %d\n",a,b,a/b);
+}
+int main()
+{
+    divide(7,3);
+}
