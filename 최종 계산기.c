@@ -29,15 +29,15 @@ int main() {
 	return 0;
 }
 
-//¿ë´ö
+//ìš©ë•
 void printFirst() {
-	printf("( ¼³¸í ) 1 : µ¡¼À 2 : »¬¼À 3 : °ö¼À 4 : ³ª´°¼À 0 : Á¾·á\n");
+	printf("( ì„¤ëª… ) 1 : ë§ì…ˆ 2 : ëº„ì…ˆ 3 : ê³±ì…ˆ 4 : ë‚˜ëˆ—ì…ˆ 0 : ì¢…ë£Œ\n");
 	return;
 }
 void printEnd(int count) {
-	printf("\n\nÁ¾·áµÇ¾ú½À´Ï´Ù\n");
-	printf("¿¬»êÈ½¼ö : %d", count);
-	printf("°¨»çÇÕ´Ï´Ù\n");
+	printf("\n\nì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤\n");
+	printf("ì—°ì‚°íšŸìˆ˜ : %d", count);
+	printf("ê°ì‚¬í•©ë‹ˆë‹¤\n");
 	return 0;
 }
 void printLine() {
@@ -45,43 +45,43 @@ void printLine() {
 	return 0;
 }
 
-//Çö¼®
+//í˜„ì„
 void plus() {
 	int n1, n2;
-	printf("Ã¹¹øÂ° ¼ıÀÚ ÀÔ·Â : ");
+	printf("ì²«ë²ˆì§¸ ìˆ«ì ì…ë ¥ : ");
 	scanf("%d", &n1);
 	clean();
-	printf("µÎ¹øÂ° ¼ıÀÚ ÀÔ·Â : ");
+	printf("ë‘ë²ˆì§¸ ìˆ«ì ì…ë ¥ : ");
 	scanf("%d", &n2);
 	clean();
 	printf("%d + %d = %d\n", n1, n2, n1 + n2);
 }
 void minus() {
 	int n1, n2;
-	printf("Ã¹¹øÂ° ¼ıÀÚ ÀÔ·Â : ");
+	printf("ì²«ë²ˆì§¸ ìˆ«ì ì…ë ¥ : ");
 	scanf("%d", &n1);
 	clean();
-	printf("µÎ¹øÂ° ¼ıÀÚ ÀÔ·Â : ");
+	printf("ë‘ë²ˆì§¸ ìˆ«ì ì…ë ¥ : ");
 	scanf("%d", &n2);
 	clean();
 	printf("%d - %d = %d\n", n1, n2, n1 - n2);
 }
 void multiple() {
 	int n1, n2;
-	printf("Ã¹¹øÂ° ¼ıÀÚ ÀÔ·Â : ");
+	printf("ì²«ë²ˆì§¸ ìˆ«ì ì…ë ¥ : ");
 	scanf("%d", &n1);
 	clean();
-	printf("µÎ¹øÂ° ¼ıÀÚ ÀÔ·Â : ");
+	printf("ë‘ë²ˆì§¸ ìˆ«ì ì…ë ¥ : ");
 	scanf("%d", &n2);
 	clean();
 	printf("%d * %d = %d\n", n1, n2, n1*n2);
 }
 void divide() {
 	int n1, n2;
-	printf("Ã¹¹øÂ° ¼ıÀÚ ÀÔ·Â : ");
+	printf("ì²«ë²ˆì§¸ ìˆ«ì ì…ë ¥ : ");
 	scanf("%d", &n1);
 	clean();
-	printf("µÎ¹øÂ° ¼ıÀÚ ÀÔ·Â : ");
+	printf("ë‘ë²ˆì§¸ ìˆ«ì ì…ë ¥ : ");
 	scanf("%d", &n2);
 	clean();
 	if (n1%n2) {
@@ -90,18 +90,18 @@ void divide() {
 	else printf("%d / %d = %d\n", n1, n2, n1 / n2);
 }
 
-//È¿¿¬
+//íš¨ì—°
 int getDecision() {
 	int d = 6974;
 	while (1) {
-		printf("¸ğµå ¼±ÅÃ : ");
+		printf("ëª¨ë“œ ì„ íƒ : ");
 		scanf("%d", &d);
 		clean();
 		if (d == 0) {
 			return 0;
 		}
 		if (!(d == 1 || d == 2 || d == 3 || d == 4)) {
-			printf("Àß¸ø ÀÔ·ÂÇß½À´Ï´Ù! ´Ù½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä\n\n");
+			printf("ì˜ëª» ì…ë ¥í–ˆìŠµë‹ˆë‹¤! ë‹¤ì‹œ ì…ë ¥í•´ ì£¼ì„¸ìš”\n\n");
 			clean();
 			continue;
 		}
