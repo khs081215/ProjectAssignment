@@ -117,13 +117,87 @@ void plus() {
 }
 
 void minus() {
-	int n1, n2;
-	printf("첫번째 숫자 입력 : ");
-	scanf("%d", &n1);
+	bigNum num[2];
+	bigNum snum[3];
+
+	int M = 0, m = 0, i;
+	printf("input FirstNumber : ");
+	num[0] = getBigNum();
 	clean();
-	printf("두번째 숫자 입력 : ");
-	scanf("%d", &n2);
-	printf("결과 -> %d - %d = %d\n", n1, n2, n1 - n2);
+	printf("input SecondNumber : ");
+	num[1] = getBigNum();
+	printf("\n%s\n - \n%s \n", num[0].num, num[1].num);
+
+	num[0] = reverse(num[0]);
+	num[1] = reverse(num[1]);
+
+	if (num[0].digit > num[1].digit) {
+		snum[0] = num[0];
+		snum[1] = num[1];
+		M = snum[0].digit;
+		m = snum[1].digit;
+		for (int i = m; i < M; i++) {
+			num[1].num[i] = '0';
+		}
+		num[1].num[M] = '\0';
+	}
+	else if (num[0].digit == num[1].digit) {
+		snum[0] = num[0];
+		snum[1] = num[1];
+		M = snum[0].digit;
+		m = snum[1].digit;
+
+		for (int i = 0; i < m; i++) {
+			if (snum[0].num[i] > snum[1].num[i])
+				break;
+			else if (snum[0].num[i] == snum[1].num[i])
+				continue;
+			else {
+				snum[2] = snum[0];
+				snum[0] = snum[1];
+				snum[1] = snum[2];
+			}
+		}
+	}
+	else {
+
+		snum[0] = num[1];
+		snum[1] = num[0];
+		M = snum[0].digit;
+		m = snum[1].digit;
+
+		for (int i = m; i < M; i++) {
+			snum[0].num[i] = '0';
+		}
+		snum[0].num[M] = '\0';
+	}
+
+	for (int i = 0; i < M + 1; i++) {
+		snum[2].num[i] = '0';
+	}
+	snum[2].num[M + 1] = '\0';
+
+	for (i = 0; i < M; i++) {
+
+		if ((snum[0].num[i] - snum[1].num[i]) + '0' < '0') {
+			snum[2].num[i] = snum[2].num[i] + snum[0].num[i] - snum[1].num[i] +10  ;
+			snum[2].num[i + 1] = snum[2].num[i + 1] - 1;
+			if (i == M - 1) {
+				if (snum[0].num[i] == '1') {
+					M--;
+					break;
+				}
+			}
+			
+		}
+		else
+			snum[2].num[i] = snum[2].num[i] + snum[0].num[i] - snum[1].num[i];
+	}
+
+	snum[2].num[M] = '\0';
+	snum[2].digit = M;
+	snum[2] = reverse(num[2]);
+	printf("\n(Output)\n%s\n", snum[2].num);
 }
 void multiple() {
 	int n1, n2;
