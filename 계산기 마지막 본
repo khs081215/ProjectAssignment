@@ -1,0 +1,181 @@
+#include <stdio.h>
+
+struct s
+{
+    char num1[100];
+    char num2[100];
+    int number;
+    int n1;
+    int n2;
+
+};
+int bigger(char* dan, char*gan,int lon, int pa)
+{
+    int in;
+    if(lon>pa) return 1;
+    else if(pa>lon) return 2;
+    else{
+    for(in=0;in<lon;in++)
+    {
+        if(dan[in]>gan[in])
+        {
+            return 1;
+            break;
+        }
+        else if(dan[in]<gan[in]) {return 2;
+        break;
+        }
+        if(dan[in]=='\0'||gan[in]=='\0')
+        {
+            return 1;
+            break;
+        }
+    }
+}
+}
+int main()
+{
+    struct s f;
+    int hap[10000]={0,};
+    char c,cau[100];
+    int cnt=0,i,j,flag=0;
+    printf("첫번째 수를 입력해주세요 100자리까지만\n ");
+    while(1)
+    {
+      c=getchar();
+      if(c=='\n') break;
+      else f.num1[cnt++]=c;
+    }
+    f.n1=cnt;
+    cnt=0;
+    printf("연산을 입력해주세요 더하기는 1 빼기는 2 곱하기는 3 나누기는 4\n");
+    scanf("%d",&f.number);
+    scanf("%c",&c);
+    printf("두번째 수를 입력해주세요 100자리까지만\n ");
+    while(1)
+    {
+      c=getchar();
+      if(c=='\n') break;
+      else f.num2[cnt++]=c;
+    }
+    f.n2=cnt;
+
+    if(f.n1>f.n2)
+    {
+        for(j=0;j<f.n2;j++) cau[j]=f.num2[j];
+        for(i=0;i<f.n2;i++)
+        {
+            f.num2[i+f.n1-f.n2]=cau[i];
+        }
+        for(i=0;i<(f.n1-f.n2);i++)
+        {
+            f.num2[i]='0';
+        }
+        f.n2=f.n1;
+    }
+    else if(f.n2>f.n1)
+        {
+        for(j=0;j<f.n1;j++) cau[j]=f.num1[j];
+        for(i=0;i<f.n1;i++)
+        {
+            f.num1[i+f.n2-f.n1]=cau[i];
+        }
+        for(i=0;i<(f.n2-f.n1);i++)
+        {
+            f.num1[i]='0';
+        }
+        f.n1=f.n2;
+    }
+for(i=0;i<f.n1;i++)
+    {
+        printf("%c %c\n",f.num1[i],f.num2[i]);
+    }
+    if(f.number==1)
+    {
+        for(i=0;i<f.n1;i++)
+        {
+            hap[i]+=(int)f.num1[f.n1-i-1]+(int)f.num2[f.n1-i-1]-'0'-'0';
+            if(hap[i]>10)
+            {
+                hap[i]-=10;
+                hap[i+1]+=1;
+            }
+        }
+        for(i=f.n1-1;i>=0;i--)
+        {
+            printf("%d",hap[i]);
+        }
+    }
+    if(f.number==2)
+    {
+
+         for(i=0;i<f.n1;i++)
+        {
+            hap[i]+=(int)f.num1[f.n1-i-1]-(int)f.num2[f.n1-i-1];
+            if(hap[i]<0)
+            {
+                hap[i]+=10;
+                hap[i+1]-=1;
+            }
+        }
+        for(i=f.n1-1;i>=0;i--)
+        {
+            printf("%d",hap[i]);
+        }
+
+    }
+    if(f.number==3)
+    {
+        for(i=0;i<f.n1;i++)
+        {
+             for(j=0;j<f.n1;j++)
+             {
+              hap[i+j]+=((int)f.num1[f.n1-i-1]-'0')*((int)f.num2[f.n1-j-1]-'0');
+            if(hap[i+j]>10)
+            {
+                hap[i+j+1]+=(hap[i+j]/10);
+                hap[i+j]%=10;
+            }
+            }
+        }
+        for(i=(f.n1*2-1);i>=0;i--)
+        {
+            printf("%d",hap[i]);
+        }
+    }
+    cnt=0;
+    if(f.number==4)
+    {
+
+        while(1)
+        {
+        for(i=0;i<f.n1;i++)
+        {
+            hap[i]+=(int)f.num1[f.n2-i-1]-(int)f.num2[f.n2-i-1];
+
+            if(hap[i]<0)
+            {
+                hap[i]+=10;
+                hap[i+1]-=1;
+                cnt++;
+            }
+        }
+            for(j=0;j<f.n1;j++)
+            {
+                if(f.num1[j]<f.num2[j])
+                {
+                    flag=1;
+                    break;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            if(flag==1) break;
+        }
+
+        printf("%d",cnt);
+    }
+
+}
