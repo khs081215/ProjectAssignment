@@ -72,19 +72,8 @@ int main()
    int c[M] = { 1, };  // 나머지
    char m1[M];
    char m2[M];
-   int i, x, z;
-
-   while (1)
-   {
-      printf("1.덧셈 2.뺄셈 3.곱셈 4.나눗셈 0.마침 ");//*
-      i = scanf("%d", &z);
-      if (i < 1) {
-         fflush(stdin);
-         continue;
-      }// mood 정하기
-      if (z == 0) {
-         break;
-      }
+   int i, x, z=0;
+      
       printf("입력1: ");
       scanf("%s", m1);
       printf("입력2: ");
