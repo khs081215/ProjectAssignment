@@ -238,7 +238,7 @@ void divide() {
 	clean();
 	printf("input SecondNumber : ");
 	num[1] = getBigNum();
-	printf("\n%s\n - \n%s \n", num[0].num, num[1].num);
+	printf("\n%s\n / \n%s \n", num[0].num, num[1].num);
 
 	if (num[0].digit > num[1].digit) {
 		snum[0] = num[0];
@@ -293,50 +293,46 @@ void divide() {
 	}
 	snum[3].num[M - m + 1] = '\0';
 
-	rM = M;
-
 	// 본방      -----------------------------------------------------------------------------------------------
-	while (snum[0].digit >= m) {
-		//값을 하나씩 비교 만약 snum2 즉 나누는 수가 크다면  rM--하고 빠져나온다
-		while (1) { //snum0 피연산자
-			if (rM == snum[0].digit) {
-				for (i = 0; i < rM; i++) {
-					if (snum[0].num[i] < snum[1].num[i]) {
-						rM--;
-						count++;
-						snum[1].num[rM] = '\0'; //만약 나누는 숫자가 더 크다면 자릿수가 줄어든다 ex 12300 -> 1230 작다면 변화 
-						snum[1].digit = rM;
-						i = 0;
-						break;
-					}
-				}
-				if (i == rM)
-					i = 0;
-				break;
-			}
+	while (1) {
+		if (M < m)
 			break;
-		}
 
-		//돌리고
+		while (snum[0].digit > snum[1].digit)
+			snum[1].digit--;
+
+		if (snum[1].digit < m)
+			break;
+
 		snum[0] = reverse(snum[0]);
 		snum[1] = reverse(snum[1]);
-		printf("\n돌린s1은 %s이네\n", snum[1].num);
 
-		//0채우기
-		for (int i = rM; i < snum[0].digit; i++) {
-			snum[1].num[i] = '0';
+		for (int i = M; i > 0; i--) {
+			if (snum[0].num[i] < snum[1].num[i]) {
+				count++;
+				M--;
+				snum[1] = reverse(snum[1]);
+				snum[1].digit--;
+				snum[1].num[snum[1].digit] = '\0';
+			}
 		}
-		snum[1].num[snum[0].digit] = '\0';
-		snum[1].digit = snum[0].digit;
 
-		//뺄샘
-		for (int i = 0; i < rM; i++) {
+		printf("\n%s \n%s\n", snum[0].num, snum[1].num);
+
+		if (M > snum[1].digit) {
+			for (int i = snum[1].digit; i > M; i--)
+				snum[0].num[i] = '0';
+			snum[1].num[M] = '\n';
+		}
+
+		//빼기
+		for (int i = 0; i < M; i++) {
 			if ((snum[0].num[i] < snum[1].num[i])) {
 				snum[2].num[i] = snum[2].num[i] + snum[0].num[i] - snum[1].num[i] + 10;
 				snum[2].num[i + 1] = snum[2].num[i + 1] - 1;
-				if (i == rM - 1) {
+				if (i == M - 1) {
 					if (snum[0].num[i] == '1') {
-						rM--;
+						M--;
 						break;
 					}
 				}
@@ -348,40 +344,29 @@ void divide() {
 			else
 				snum[2].num[i] = snum[2].num[i] + snum[0].num[i] - snum[1].num[i];
 		}
-		snum[2].num[rM] = '\0';
 
-		printf("\n%d\n", rM);
-
-		snum[2].digit = rM;
-		for (int i = rM - 1; i > 0; i--) {
+		snum[2].num[M] = '\0';
+		snum[2].digit = M;
+		for (int i = M - 1; i > 0; i--) {
 			if (snum[2].num[i] != '0') {
 				break;
 			}
 			snum[2].num[i] = '\0';
 			snum[2].digit = i;
 		}
-
-		printf("\n뺀 s1값 아닌가? %s\n", snum[2].num);
-
-		snum[1] = reverse(snum[1]); //다시 돌려줌 
-
-
-		snum[2] = reverse(snum[2]);
-		printf("%d", rM);
-
-		printf("\nnum2 : %s\n", snum[2].num);
-
-		snum[0] = snum[2]; //s2가 새로운 값의 역할을 한다!
-
-		for (int i = 0; i < snum[0].digit; i++) {
-			snum[2].num[i] = '0';
+		if (snum[2].num[0] == '\0') {
+			snum[2].num[0] = '0';
+			snum[2].digit = 1;
 		}
-		snum[2].num[rM] = '\0';
 
+		printf(" snum2 %s", snum[2].num);
+		snum[1] = reverse(snum[1]);
+		snum[2].num[snum[2].digit] = '\0';
+		snum[2] = reverse(snum[2]);
+		printf("snum2%s", snum[2].num);
 
-		printf("s2가 새로운 값의 역할을 한다!. %s", snum[0].num);
-		snum[3].num[count] += 1; //리얼 값을 증가시킨다
-
+		snum[0] = snum[2];
+		snum[3].num[count] += 1;
 	}
 
 	printf("\n(Output)\n몫 : %s\n나머지 : %s\n\n", snum[3].num, snum[0].num);
